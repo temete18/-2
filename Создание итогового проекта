@@ -1,0 +1,418 @@
+#Домашнее задание номер 7
+#Задание 1
+
+import sqlite3
+
+
+
+
+
+def create_db():
+
+    """
+
+    Создает базу данных jokes.db и таблицу Jokes (если они не существуют)
+
+    """
+
+    conn = sqlite3.connect('jokes.db')
+
+    cursor = conn.cursor()
+
+
+
+    # Создаем таблицу Jokes
+
+    cursor.execute('''
+
+CREATE TABLE IF NOT EXISTS Jokes 
+
+        (id INTEGER PRIMARY KEY AUTOINCREMENT, joke TEXT)
+
+    ''')
+
+
+
+    conn.close()
+
+    def insert_joke(joke):
+
+    """
+
+    Добавляет новую шутку в таблицу Jokes
+
+    :param joke: шутка
+
+    """
+
+    conn = sqlite3.connect('jokes.db')
+
+    cursor = conn.cursor()
+
+    # Вставляем шутку в таблицу Jokes
+
+    cursor.execute("INSERT INTO Jokes (joke) VALUES (?)", (joke,))
+
+
+
+    conn.commit()
+
+    conn.close()
+
+    def select_jokes():
+
+    """
+
+    Возвращает все шутки из таблицы Jokes
+
+    :return: список шуток
+
+    """
+
+    conn = sqlite3.connect('jokes.db')
+
+    cursor = conn.cursor()
+
+    # Получаем все шутки из таблицы Jokes
+
+    cursor.execute("SELECT joke FROM Jokes")
+
+    jokes = cursor.fetchall()
+
+
+
+    conn.close()
+
+
+
+    return jokes
+
+if __name__ == '__main__':
+
+    create_db()
+
+
+
+    jokes = [
+
+        "Why don't scientists trust atoms? Because they make up everything!",
+
+        "I'm reading a book about anti-gravity. It's impossible to put down!",
+
+        "If you see a robbery at an Apple Store, does that make you an iWitness?",
+
+        "My friend says to me: "What rhymes with orange" I said: "No it doesn't!"",
+
+        "Why don't Calculus majors throw house parties? Because you should never drink and derive."
+
+    ]
+
+for joke in jokes:
+
+        insert_joke(joke)
+
+
+
+    all_jokes = select_jokes()
+
+    for joke in all_jokes:
+
+        print(joke[0])
+
+        import sqlite3
+
+
+
+def create_db():
+
+    """
+
+    Создает базу данных jokes.db и таблицу Jokes (если они не существуют)
+
+    """
+
+    conn = sqlite3.connect('jokes.db')  # Устанавливаем соединение с базой данных jokes.db
+
+    cursor = conn.cursor()  # Создаем курсор, который позволяет выполнять SQL-запросы
+
+   # Вставляем шутку в таблицу Jokes
+
+    cursor.execute("INSERT INTO Jokes (joke) VALUES (?)", (joke,))  # Используем параметризированный запрос для безопасного добавления шутки в таблицу
+
+    conn.commit()  # Сохраняем изменения в базе данных
+
+    conn.close()  # Закрываем соединение с базой данных
+
+    if __name__ == '__main__':
+
+    create_jokes_db()  # Создаем базу данных (если она не создана)
+
+    jokes = [
+
+        "Why don't scientists trust atoms? Because they make up everything!",
+
+        "I'm reading a book about anti-gravity. It's impossible to put down!",
+
+        "If you see a robbery at an Apple Store, does that make you an iWitness?",
+
+        "My friend says to me: "What rhymes with orange" I said: "No it doesn't!"",
+
+        "Why don't Calculus majors throw house parties? Because you should never drink and derive."
+    ]
+
+for joke in jokes:
+
+        insert_joke(joke)  # Вставляем каждую шутку в таблицу Jokes
+
+        all_jokes = select_jokes()  # Получаем все шутки из таблицы Jokes
+
+    for joke in all_jokes:
+
+        print(joke[0])  # Выводим каждую шутку на экран
+
+        #Задание 2
+
+        import sqlite3
+
+
+
+def create_jokes_db():
+
+    """
+
+    Создает базу данных jokes.db и таблицу Jokes (если они не существуют)
+
+    """
+
+    conn = sqlite3.connect('jokes.db')  # Устанавливаем соединение с базой данных jokes.db
+
+    cursor = conn.cursor()  # Создаем курсор, который позволяет выполнять SQL-запросы
+
+    # Создаем таблицу Jokes (если она не существует)
+
+    cursor.execute('''
+
+        CREATE TABLE IF NOT EXISTS Jokes
+
+        (id INTEGER PRIMARY KEY AUTOINCREMENT, joke TEXT)
+
+    ''')
+
+    conn.close()  # Закрываем соединение с базой данных
+
+    def insert_joke(joke):
+
+    """
+
+    Добавляет новую шутку в таблицу Jokes
+
+    :param joke: шутка
+
+    """
+
+    conn = sqlite3.connect('jokes.db')  # Устанавливаем соединение с базой данных jokes.db
+
+    cursor = conn.cursor()  # Создаем курсор, который позволяет выполнять SQL-запросы
+
+    # Вставляем шутку в таблицу Jokes
+
+    cursor.execute("INSERT INTO Jokes (joke) VALUES (?)", (joke,))  # Используем параметризированный запрос для безопасного добавления шутки в таблицу
+
+    conn.commit()  # Сохраняем изменения в базе данных
+
+    conn.close()  # Закрываем соединение с базой данных
+
+    if __name__ == '__main__':
+
+    create_jokes_db()  # Создаем базу данных (если она не создана)
+
+    jokes = [
+
+        "Why don't scientists trust atoms? Because they make up everything!",
+
+        "I'm reading a book about anti-gravity. It's impossible to put down!",
+
+        "If you see a robbery at an Apple Store, does that make you an iWitness?",
+
+        "My friend says to me: "What rhymes with orange" I said: "No it doesn't!"",
+
+        "Why don't Calculus majors throw house parties? Because you should never drink and derive."
+    ]
+
+for joke in jokes:
+
+        insert_joke(joke)  # Вставляем каждую шутку в таблицу Jokes
+
+
+#Домашнее задание номер 8
+#Задание 1
+
+import sqlite3
+
+
+
+# Создаем таблицу
+
+def create_table():
+
+    # Создаем подключение к базе данных
+
+    conn = sqlite3.connect('mydatabase.db')
+
+    # Создаем курсор - это специальный объект, который позволяет делать запросы и получать их результаты
+
+    cursor = conn.cursor()
+
+    # Выполняем SQL-запрос для создания таблицы
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS jokes
+                   
+                   (id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                       joke TEXT)""")
+
+    # Подтверждаем транзакцию
+
+    conn.commit()
+
+    # Закрываем соединение
+
+    conn.close()
+
+    # Добавляем анекдот в таблицу
+
+def add_joke(joke):
+
+    # Создаем подключение к базе данных
+
+    conn = sqlite3.connect('mydatabase.db')
+
+    cursor = conn.cursor()
+
+    # Выполняем SQL-запрос для добавления анекдота в таблицу
+
+    cursor.execute("INSERT INTO jokes (joke) VALUES (?)", (joke,))
+
+    conn.commit()
+
+    conn.close()
+
+    # Получаем случайный анекдот из таблицы
+
+def get_random_joke():
+
+    conn = sqlite3.connect('mydatabase.db')
+
+    cursor = conn.cursor()
+
+    # Выполняем SQL-запрос для получения случайного анекдота из таблицы
+
+    cursor.execute("SELECT joke FROM jokes ORDER BY RANDOM() LIMIT 1")
+
+    joke = cursor.fetchone()[0]
+
+    conn.close()
+
+    return joke
+
+# Создаем таблицу
+
+create_table()
+
+
+
+# Добавляем анекдоты в таблицу
+
+add_joke("Why did the chicken cross the road? To get to the other side!")
+
+add_joke("Why don't scientists trust atoms? Because they make up everything!")
+
+# Выводим случайный анекдот из таблицы
+
+print(get_random_joke())
+
+
+
+#Задание 2
+
+import tkinter as tk
+
+import sqlite3
+
+import random
+
+
+
+# Создаем соединение с базой данных
+
+conn = sqlite3.connect('mydatabase.db')
+
+cursor = conn.cursor()
+
+# Создаем класс приложения
+
+class JokeApp(tk.Frame):
+
+    def __init__(self, master=None):
+
+        super().__init__(master)
+
+        self.master = master
+
+        self.pack()
+
+        self.create_widgets()
+
+        def create_widgets(self):
+
+        # Создаем кнопку
+
+        self.button = tk.Button(self)
+
+        self.button["text"] = "Показать анекдот"
+
+        self.button["command"] = self.show_joke
+
+        self.button.pack(side="top")
+
+        # Создаем текстовое поле
+
+        self.text = tk.Text(self)
+
+        self.text.insert('end', '')
+
+        self.text.pack(side="top")
+
+        def show_joke(self):
+
+        # Выполняем SQL-запрос для получения случайного анекдота
+
+        cursor.execute("SELECT joke FROM jokes ORDER BY RANDOM() LIMIT 1")
+
+        joke = cursor.fetchone()[0]
+
+        # Выводим анекдот в текстовое поле
+
+        self.text.delete('1.0', 'end')
+
+        self.text.insert('end', joke)
+
+        # Создаем экземпляр класса приложения
+
+root = tk.Tk()
+
+app = JokeApp(master=root)
+
+app.mainloop()
+
+
+
+# Закрываем соединение с базой данных
+
+conn.close()
+
+
+
+
+
+
